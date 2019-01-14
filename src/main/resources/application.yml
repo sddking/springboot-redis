@@ -1,0 +1,63 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  #alibaba druid数据源配置
+  datasource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.jdbc.Driver
+      platform: mysql
+      url: jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: asp_10010
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      filters: stat,wall,log4j
+      logSlowSql: true
+  #jpa配置
+  jpa:
+    database: MYSQL
+    show-sql: true
+  ## Hibernate ddl auto (validate|create|create-drop|update)
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  ## redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: ""
+    database: 0
+    jedis:
+      pool:
+        # 连接池中的最大空闲连接
+        max-idle: 10000
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 10000
+        # 连接池中的最小空闲连接
+        min-idle: 0
+    timeout: 5000
+  ##thymleft配置
+  thymeleaf:
+     cache: false
+     prefix: classpath:/templates/
+     suffix: .html
+     encoding: UTF-8
+     mode: HTML
+     servlet:
+       content-type: text/html
